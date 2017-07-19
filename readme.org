@@ -151,6 +151,18 @@ An environment is a sequence of frames. So far we have environments that are two
 - The global frame alone
 - A local, then the global frame
 
+Every expression is evaluated in the context of an environment.
+
+A name evaluates to the value bound to that name in the earliest frame
+of the current environment in which the name is found.
+
+[[./figures/lecture3_multiple_environments.png]]
+
+A call expressions and the body of the function being called are
+evaluated in different environments.
+
+** Miscellaneous Python Features
+
 * Homeworks
 ** Using the ok program
 The ok program helps you test your code and track your progress. The first time you run the autograder, you will be asked to log in with your @berkeley.edu account using your web browser. Please do so. Each time you run ok, it will back up your work and progress on our servers. You can run all the doctests with the following command:
