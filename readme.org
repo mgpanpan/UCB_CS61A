@@ -1,2 +1,27 @@
 UC Berkeley CS61A (2015 spring)
 
+* Lecture 1
+** What is this course about ?
+- A course about managing complexity
+  - Mastering abstraction
+  - Programming paradigms
+  - Not just about 0's and 1's
+- An introduction to Python
+  - Full understanding of language fundamentals
+  - Learning through implementation
+  - How computers interpret programming languages
+
+** Alternatives to this course
+CS 61AS : Self-Paced CS 61A, using *scheme*.
+
+CS 10 : The Beauty and Joy of Computing.
+
+** Expression
+
+Evaluation procedure for call expressions:
+- Evaluate the operator and then the operand subexpressions
+- Apply the function that is the value of the operator subexpression to the arguments that are the values of the operand subexpression
+
+
+
+
