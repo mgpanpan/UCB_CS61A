@@ -1,4 +1,13 @@
-UC Berkeley CS61A (2015 spring)
+#+TITLE:     Notes for course UC Berkeley CS61A (2015 spring)
+#+AUTHOR:    Pan Mengguan
+#+EMAIL:     pmengguan@gmail.com
+#+DESCRIPTION:
+#+KEYWORDS:
+#+LANGUAGE:  cn
+#+OPTIONS:   H:4 num:t toc:t \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+# #+HTML_HEAD: <link rel="stylesheet" href="worg_modified.css" type="text/css" />
+#+SETUPFILE: theme-readtheorg-local.setup
 
 * Lecture 1
 ** What is this course about ?
@@ -22,6 +31,81 @@ Evaluation procedure for call expressions:
 - Evaluate the operator and then the operand subexpressions
 - Apply the function that is the value of the operator subexpression to the arguments that are the values of the operand subexpression
 
+* Lecture 2
+** Names, Assignment, and User-Defined Functions
+buildin names are stored in modules
+
+the *operator* module contains names for the functions that do the
+same thing as the built-in symbols as the '+' and '-'.
+
+#+BEGIN_SRC python
+radius = 10
+def circ():
+    return 2 * pi * radius
+circ()
+radius = 20
+circ()
+#+END_SRC
+
+这个例子是否说明的是函数实现惰性求值。
+
+** Types of Expressions
+- Primitive expressions:
+  - Number or Numeral (2)
+  - Name (add )
+  - String ('hello')
+- Call expressions:   operator(operand, operand, ...)
+
+An operand can also be a call expression.
+
+** Environment diagrams
+Environment diagrams visualize the interpreter's process
+
+[[http://www.pythontutor.com/composingprograms.html#mode=display]]
+
+- Execution rule for assignment statements:
+  1. Evaluate all expressions to the right of = from left to right
+  2. Bind all names to the left of = to those resulting values in the current frame.
+
+** Defining functions
+Assignment is a simple means of abstraction: *binds names to values*
+
+Function definition is a more powerful means of abstraction: *binds names to expressions*
+
+: def <name>(<formal parameters>):
+:     return <return expression>
+
+Everything on the first line after "def" is the function signature.
+
+Function body defines the computation performed when the function is
+applied.
+
+*Execution procedure for def statements*:
+1. Create a function with signature <name>(<formal parameters>)
+2. Set the body of that function to be everything indented after the first line
+3. Bind <name> to that function in the *current frame*
+
+** Calling user defined function
+Procedure for calling/applying user-defined functions (version 1):
+1. Add a local frame, forming a new environment
+2. Bind the function's formal parameters to its arguments in that frame
+3. Execute the body of the function in that new environment
+
+Example:
+
+[[./figures/lecture2_call_frame.png]]
+
+A function's signature has all the information needed to create a local frame
 
 
 
+** Looking up Names in Environments
+Every expression is evaluated in the context of an environment.
+
+So far, the current environment is either:
+- The global frame alone or
+- A local frame, followed by the global frame.
+
+Two *important things*:
+- An environment is a sequence of frames
+- A name evaluates to the value bound to that name in the earliest frame of the current environment in which that name is found.
