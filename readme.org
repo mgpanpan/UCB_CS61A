@@ -97,15 +97,79 @@ Example:
 
 A function's signature has all the information needed to create a local frame
 
-
-
 ** Looking up Names in Environments
 Every expression is evaluated in the context of an environment.
 
 So far, the current environment is either:
 - The global frame alone or
 - A local frame, followed by the global frame.
-
+from
 Two *important things*:
 - An environment is a sequence of frames
 - A name evaluates to the value bound to that name in the earliest frame of the current environment in which that name is found.
+
+Built-in names like "max" are in the global frame too.
+
+** Print and None
+A special value called "None", it means "nothing".
+
+A function that does not explicitly return a value will return *None*.
+
+Careful: *None* is not displayed by the interpreter as the value of an expression.
+This means when typed "None" in REPL, noting showed up.
+
+- Pure Functions: just return values
+- Non-pure functions: have side effects
+
+[[./figures/lecture2_pure_nonpure_functions.png]]
+
+* Lecture 3
+** Multiple Environments
+*** Life Cycle of a User-defined function
+Def statement:
+- A new function is created
+- Name bound to that function in the current frame
+
+Call expression:
+: square(2+2)
+square is a name, what is also called an operator, and it evaluates to a user-defined function.
+
+The operand is an expression, which is evaluated to number ~4~
+
+- When call, operator & operands are evaluated
+- Then Function (value of operator) called on arguments (values of operands)
+
+Calling/Applying:
+- A new frame is created (a new place where you can bind names to values)
+- Parameters bound to arguments
+- Body is executed in that new environment
+- A value is returned.
+
+*Assignment and Def statement all change the current frame*
+
+An environment is a sequence of frames. So far we have environments that are two frames long at a maximum.
+- The global frame alone
+- A local, then the global frame
+
+* Homeworks
+** Using the ok program
+The ok program helps you test your code and track your progress. The first time you run the autograder, you will be asked to log in with your @berkeley.edu account using your web browser. Please do so. Each time you run ok, it will back up your work and progress on our servers. You can run all the doctests with the following command:
+: python3 ok
+
+To test a specific question, use the -q option with the name of the function:
+: python3 ok -q <function>
+
+By default, only tests that fail will appear. If you want to see how you did on all tests, you can use the -v option:
+: python3 ok -v
+
+If you do not want to send your progress to our server or you have any problems logging in, add the *--local* flag to block all communication:
+: python3 ok --local
+
+When you are ready to submit, run ok with the --submit option:
+: python3 ok --submit
+
+每次使用 ~python3 ok --local~ 对 homework 进行测试，使用 ~-q~ 来对具体
+的问题进行测试。
+
+
+
