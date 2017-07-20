@@ -161,8 +161,41 @@ of the current environment in which the name is found.
 A call expressions and the body of the function being called are
 evaluated in different environments.
 
-** Miscellaneous Python Features
+*** Local Names (1.3.4 of book)
+The /scope/ of a local name is limited to the body of the user-defined
+function that defines it. When a name is no longer accessible, it is
+out of scope. This scoping behavior *isn't* a new fact about our
+model; it is a consequence of the way *environments* work.
 
+** Miscellaneous Python Features
+~print~ 函数可通过 ~sep~ 指定间隔字符，默认是 ' '，使用 '' 可去除
+间隔。
+
+Run in interative mode:
+: python -i ex.py
+
+Run doctest:
+: python -m doctest ex.py
+
+Run doctest with detailed information shown:
+: python -m doctest -v ex.py
+
+使用 ~help(...)~ 查看 docstring
+
+** Conditional statement
+A /statement/ is executed by the interpreter to perform an action,
+which is a bit different than the /expression/ which evaluates to a
+value. So statement *does something* and expression *evaluates* to a
+value.
+
+[From book 1.5] Control statements differ fundamentally from the
+expressions that we have studied so far. They deviate from the strict
+evaluation of subexpressions from left to right, and get their name
+from the fact that they control what the interpreter should do next,
+possibly based on the values of expressions.
+
+In Python, 0, ~None~ and /boolean/ value ~False~ are false values, all
+other numbers are true values.
 * Homeworks
 ** Using the ok program
 The ok program helps you test your code and track your progress. The first time you run the autograder, you will be asked to log in with your @berkeley.edu account using your web browser. Please do so. Each time you run ok, it will back up your work and progress on our servers. You can run all the doctests with the following command:
