@@ -27,16 +27,17 @@ def two_of_three(a, b, c):
     >>> two_of_three(5, 5, 5)
     50
     """
-    if a > b:
-        if b > c:
-            return a * a + b * b
-        else:
-            return a * a + c * c
-    else:
-        if a > c:
-            return a * a + b * b
-        else:
-            return b * b + c * c
+    # if a > b:
+    #     if b > c:
+    #         return a * a + b * b
+    #     else:
+    #         return a * a + c * c
+    # else:
+    #     if a > c:
+    #         return a * a + b * b
+    #     else:
+    #         return b * b + c * c
+    return a * a + b * b + c * c - min(a, b, c) ** 2
 
 def if_function(condition, true_result, false_result):
     """Return true_result if condition is a true value, and
@@ -71,12 +72,15 @@ def with_if_function():
 
 def c():
     "*** YOUR CODE HERE ***"
+    return True
 
 def t():
     "*** YOUR CODE HERE ***"
+    return 1
 
 def f():
     "*** YOUR CODE HERE ***"
+    return 1 / 0
 
 def hailstone(n):
     """Print the hailstone sequence starting at n and return its
@@ -94,9 +98,25 @@ def hailstone(n):
     7
     """
     "*** YOUR CODE HERE ***"
+    cnt, m = 1, n
+    while m != 1:
+        print(m)
+        if m % 2 == 0:
+            m = m // 2
+        else:
+            m = m * 3 + 1
+        cnt = cnt + 1
+    print(m)
+    return cnt
 
+# 还未明白
 challenge_question_program = """
-"*** YOUR CODE HERE ***"
+s = 'print("s = " + repr(s) + "; eval(s)")'; eval(s)
 """
+# Reference for last question:
+# http://www.madore.org/~david/computers/quine.html
+# http://switchb.org/kpreid/quines
+# https://github.com/mame/quine-relay
+
 
 

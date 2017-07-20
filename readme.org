@@ -167,6 +167,15 @@ function that defines it. When a name is no longer accessible, it is
 out of scope. This scoping behavior *isn't* a new fact about our
 model; it is a consequence of the way *environments* work.
 
+*** Local Assignment (1.5.3 of book)    :important:
+The effect of an assignment statement is to bind a name to a value in
+the *first* frame of the current environment. As a consequence,
+assignment statements within a function body cannot affect the global
+frame.
+
+The fact that functions can only manipulate their local environment is
+critial to creating /modular/ programs.
+
 ** Miscellaneous Python Features
 ~print~ 函数可通过 ~sep~ 指定间隔字符，默认是 ' '，使用 '' 可去除
 间隔。
@@ -196,6 +205,7 @@ possibly based on the values of expressions.
 
 In Python, 0, ~None~ and /boolean/ value ~False~ are false values, all
 other numbers are true values.
+**  
 * Homeworks
 ** Using the ok program
 The ok program helps you test your code and track your progress. The first time you run the autograder, you will be asked to log in with your @berkeley.edu account using your web browser. Please do so. Each time you run ok, it will back up your work and progress on our servers. You can run all the doctests with the following command:
