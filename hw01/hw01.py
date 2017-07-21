@@ -117,6 +117,3 @@ s = 'print("s = " + repr(s) + "; eval(s)")'; eval(s)
 # http://www.madore.org/~david/computers/quine.html
 # http://switchb.org/kpreid/quines
 # https://github.com/mame/quine-relay
-
-
-

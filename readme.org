@@ -205,7 +205,11 @@ possibly based on the values of expressions.
 
 In Python, 0, ~None~ and /boolean/ value ~False~ are false values, all
 other numbers are true values.
-**  
+
+Functions that perform tests and return boolean values typically begin with ~is~, not followed by an underscore.
+
+* Lecture 4
+
 * Homeworks
 ** Using the ok program
 The ok program helps you test your code and track your progress. The first time you run the autograder, you will be asked to log in with your @berkeley.edu account using your web browser. Please do so. Each time you run ok, it will back up your work and progress on our servers. You can run all the doctests with the following command:
