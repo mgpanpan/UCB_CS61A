@@ -21,11 +21,66 @@ def fib_v2(n):
 for i in range(10):
     print(i, ":", fib(i))
 
-x = 10
-
 def test_scope(y):
-    print(x)
+    def inner(z):
+        return z + y
+    y = 40
+    print(inner(10))
 
-x = 20
+test_scope(20)
 
-test_scope(10)
+def iter_eval(guess, iter_next, isgoodenough):
+    # while not isgoodenough(guess):
+    #     guess = iter_next(guess)
+    # return guess
+    if isgoodenough(guess):
+        return guess
+    else:
+        return iter_eval(iter_next(guess), iter_next, isgoodenough)
+
+def isapprox(x, y, eps = 1e-5):
+    return abs(x - y) < eps
+
+def golden_value():
+    def iter_next(guess):
+        return 1 / guess + 1
+    def test(guess):
+        return isapprox(guess ** 2, guess + 1)
+    return iter_eval(1.0, iter_next, test)
+
+def sqrt(x):
+    def iter_next(guess):
+        return 0.5 * (guess + x / guess)
+    def test(guess):
+        return isapprox(guess ** 2, x)
+    return iter_eval(x / 2, iter_next, test)
+
+from math import pi, sqrt
+
+def area(r, shape_constant):
+    assert r > 0, 'A length must be positive'
+    return r * r * shape_constant
+    
+# def area_square(r):
+#     assert r > 0, 'A length must be positive'
+#     return r * r
+
+# def area_circle(r):
+#     assert r > 0, 'A length must be positive'
+#     return r * r * pi
+
+# def area_hexagon(r):
+#     assert r > 0, 'A length must be positive'
+#     return r * r * 3 * sqrt(3) / 2
+
+def area_square(r):
+    return area(r, 1)
+
+def area_circle(r):
+    return area(r, pi)
+
+def area_circle(r):
+    return are(r, 3 * sqrt(3) / 2)
+
+
+
