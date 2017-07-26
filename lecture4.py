@@ -55,6 +55,16 @@ def sqrt(x):
         return isapprox(guess ** 2, x)
     return iter_eval(x / 2, iter_next, test)
 
+def newton_method(f, initial_value):
+    def newton_next(x):
+        return x - f(x) / f_dev(x, f)
+    def f_dev(x, f, delta = 1e-5):
+        return (f(x+delta) - f(x)) / delta
+    return iter_eval(initial_value, newton_next, lambda x : isapprox(f(x), 0))
+
+print(newton_method(lambda x : (x ** 2 - 16), 1.0))
+print(newton_method(lambda x : (2 ** x - 32), 1.0))
+    
 from math import pi, sqrt
 
 def area(r, shape_constant):

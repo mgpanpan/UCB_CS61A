@@ -208,7 +208,28 @@ other numbers are true values.
 
 Functions that perform tests and return boolean values typically begin with ~is~, not followed by an underscore.
 
-* Lecture 4
+* Lecture 5
+#+BEGIN_SRC Python
+def make_adder(n):
+    def adder(k):
+        return k + n
+    return adder
+
+add_three = make_adder(3)
+result = add_three(4)
+#+END_SRC
+The parent of function ~add_three~ is ~f1~ (frame of ~make_adder~), not ~Global~.
+
+Data is part of the function.
+
+- Every user-defined function has a parent frame (often global)
+- The parent of a function is the frame in which it was defined
+- Every local frame has a parent frame (often global)
+- The parent of a frame is the parent of the function called.
+
+[[./figures/lecture5_draw_diagram.png]]
+
+lambda expression must be a *single* expression.
 
 * Homeworks
 ** Using the ok program

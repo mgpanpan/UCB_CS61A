@@ -3,30 +3,23 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="cn" xml:lang="cn">
 <head>
-<!-- 2017-07-19 周三 17:26 -->
-<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>Notes for course UC Berkeley CS61A (2015 spring)</title>
+<!-- 2017-07-23 日 23:25 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Pan Mengguan" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
-  .title  { text-align: center;
-             margin-bottom: .2em; }
-  .subtitle { text-align: center;
-              font-size: medium;
-              font-weight: bold;
-              margin-top:0; }
+  .title  { text-align: center; }
   .todo   { font-family: monospace; color: red; }
-  .done   { font-family: monospace; color: green; }
-  .priority { font-family: monospace; color: orange; }
+  .done   { color: green; }
   .tag    { background-color: #eee; font-family: monospace;
             padding: 2px; font-size: 80%; font-weight: normal; }
   .timestamp { color: #bebebe; }
   .timestamp-kwd { color: #5f9ea0; }
-  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
-  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
-  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
   .underline { text-decoration: underline; }
   #postamble p, #preamble p { font-size: 90%; margin: .2em; }
   p.verse { margin-left: 3%; }
@@ -65,14 +58,15 @@
   caption.t-above { caption-side: top; }
   caption.t-bottom { caption-side: bottom; }
   td, th { vertical-align:top;  }
-  th.org-right  { text-align: center;  }
-  th.org-left   { text-align: center;   }
-  th.org-center { text-align: center; }
-  td.org-right  { text-align: right;  }
-  td.org-left   { text-align: left;   }
-  td.org-center { text-align: center; }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
   dt { font-weight: bold; }
-  .footpara { display: inline; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
   .footdef  { margin-bottom: 1em; }
   .figure { padding: 1em; }
   .figure p { text-align: center; }
@@ -154,51 +148,80 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgheadline4">1. Lecture 1</a>
+<li><a href="#sec-1">1. Lecture 1</a>
 <ul>
-<li><a href="#orgheadline1">1.1. What is this course about ?</a></li>
-<li><a href="#orgheadline2">1.2. Alternatives to this course</a></li>
-<li><a href="#orgheadline3">1.3. Expression</a></li>
+<li><a href="#sec-1-1">1.1. What is this course about ?</a></li>
+<li><a href="#sec-1-2">1.2. Alternatives to this course</a></li>
+<li><a href="#sec-1-3">1.3. Expression</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline10">2. Lecture 2</a>
+<li><a href="#sec-2">2. Lecture 2</a>
 <ul>
-<li><a href="#orgheadline5">2.1. Names, Assignment, and User-Defined Functions</a></li>
-<li><a href="#orgheadline6">2.2. Types of Expressions</a></li>
-<li><a href="#orgheadline7">2.3. Environment diagrams</a></li>
-<li><a href="#orgheadline8">2.4. Defining functions</a></li>
-<li><a href="#orgheadline9">2.5. Calling user defined function</a></li>
+<li><a href="#sec-2-1">2.1. Names, Assignment, and User-Defined Functions</a></li>
+<li><a href="#sec-2-2">2.2. Types of Expressions</a></li>
+<li><a href="#sec-2-3">2.3. Environment diagrams</a></li>
+<li><a href="#sec-2-4">2.4. Defining functions</a></li>
+<li><a href="#sec-2-5">2.5. Calling user defined function</a></li>
+<li><a href="#sec-2-6">2.6. Looking up Names in Environments</a></li>
+<li><a href="#sec-2-7">2.7. Print and None</a></li>
+</ul>
+</li>
+<li><a href="#sec-3">3. Lecture 3</a>
+<ul>
+<li><a href="#sec-3-1">3.1. Multiple Environments</a>
+<ul>
+<li><a href="#sec-3-1-1">3.1.1. Life Cycle of a User-defined function</a></li>
+<li><a href="#sec-3-1-2">3.1.2. Local Names (1.3.4 of book)</a></li>
+<li><a href="#sec-3-1-3">3.1.3. Local Assignment (1.5.3 of book)</a></li>
+</ul>
+</li>
+<li><a href="#sec-3-2">3.2. Miscellaneous Python Features</a></li>
+<li><a href="#sec-3-3">3.3. Conditional statement</a></li>
+</ul>
+</li>
+<li><a href="#sec-4">4. Lecture 5</a></li>
+<li><a href="#sec-5">5. Homeworks</a>
+<ul>
+<li><a href="#sec-5-1">5.1. Using the ok program</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgheadline4" class="outline-2">
-<h2 id="orgheadline4"><span class="section-number-2">1</span> Lecture 1</h2>
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> Lecture 1</h2>
 <div class="outline-text-2" id="text-1">
-</div><div id="outline-container-orgheadline1" class="outline-3">
-<h3 id="orgheadline1"><span class="section-number-3">1.1</span> What is this course about ?</h3>
+</div><div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> What is this course about ?</h3>
 <div class="outline-text-3" id="text-1-1">
 <ul class="org-ul">
 <li>A course about managing complexity
 <ul class="org-ul">
-<li>Mastering abstraction</li>
-<li>Programming paradigms</li>
-<li>Not just about 0's and 1's</li>
-</ul></li>
+<li>Mastering abstraction
+</li>
+<li>Programming paradigms
+</li>
+<li>Not just about 0's and 1's
+</li>
+</ul>
+</li>
 <li>An introduction to Python
 <ul class="org-ul">
-<li>Full understanding of language fundamentals</li>
-<li>Learning through implementation</li>
-<li>How computers interpret programming languages</li>
-</ul></li>
+<li>Full understanding of language fundamentals
+</li>
+<li>Learning through implementation
+</li>
+<li>How computers interpret programming languages
+</li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgheadline2" class="outline-3">
-<h3 id="orgheadline2"><span class="section-number-3">1.2</span> Alternatives to this course</h3>
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2"><span class="section-number-3">1.2</span> Alternatives to this course</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 CS 61AS : Self-Paced CS 61A, using <b>scheme</b>.
@@ -210,25 +233,27 @@ CS 10 : The Beauty and Joy of Computing.
 </div>
 </div>
 
-<div id="outline-container-orgheadline3" class="outline-3">
-<h3 id="orgheadline3"><span class="section-number-3">1.3</span> Expression</h3>
+<div id="outline-container-sec-1-3" class="outline-3">
+<h3 id="sec-1-3"><span class="section-number-3">1.3</span> Expression</h3>
 <div class="outline-text-3" id="text-1-3">
 <p>
 Evaluation procedure for call expressions:
 </p>
 <ul class="org-ul">
-<li>Evaluate the operator and then the operand subexpressions</li>
-<li>Apply the function that is the value of the operator subexpression to the arguments that are the values of the operand subexpression</li>
+<li>Evaluate the operator and then the operand subexpressions
+</li>
+<li>Apply the function that is the value of the operator subexpression to the arguments that are the values of the operand subexpression
+</li>
 </ul>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgheadline10" class="outline-2">
-<h2 id="orgheadline10"><span class="section-number-2">2</span> Lecture 2</h2>
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> Lecture 2</h2>
 <div class="outline-text-2" id="text-2">
-</div><div id="outline-container-orgheadline5" class="outline-3">
-<h3 id="orgheadline5"><span class="section-number-3">2.1</span> Names, Assignment, and User-Defined Functions</h3>
+</div><div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1"><span class="section-number-3">2.1</span> Names, Assignment, and User-Defined Functions</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 buildin names are stored in modules
@@ -241,11 +266,11 @@ same thing as the built-in symbols as the '+' and '-'.
 
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #6b82a7; background-color: #f1f4f8;">radius</span> = 10
-<span style="color: #cf7900; background-color: #fdf9f2;">def</span> <span style="color: #d15120; background-color: #fdf2ed;">circ</span>():
-    <span style="color: #cf7900; background-color: #fdf9f2;">return</span> 2 * pi * radius
+<pre class="src src-python">radius = 10
+def circ():
+    return 2 * pi * radius
 circ()
-<span style="color: #6b82a7; background-color: #f1f4f8;">radius</span> = 20
+radius = 20
 circ()
 </pre>
 </div>
@@ -256,17 +281,22 @@ circ()
 </div>
 </div>
 
-<div id="outline-container-orgheadline6" class="outline-3">
-<h3 id="orgheadline6"><span class="section-number-3">2.2</span> Types of Expressions</h3>
+<div id="outline-container-sec-2-2" class="outline-3">
+<h3 id="sec-2-2"><span class="section-number-3">2.2</span> Types of Expressions</h3>
 <div class="outline-text-3" id="text-2-2">
 <ul class="org-ul">
 <li>Primitive expressions:
 <ul class="org-ul">
-<li>Number or Numeral (2)</li>
-<li>Name (add )</li>
-<li>String ('hello')</li>
-</ul></li>
-<li>Call expressions:   operator(operand, operand, &#x2026;)</li>
+<li>Number or Numeral (2)
+</li>
+<li>Name (add )
+</li>
+<li>String ('hello')
+</li>
+</ul>
+</li>
+<li>Call expressions:   operator(operand, operand, &#x2026;)
+</li>
 </ul>
 
 <p>
@@ -275,8 +305,8 @@ An operand can also be a call expression.
 </div>
 </div>
 
-<div id="outline-container-orgheadline7" class="outline-3">
-<h3 id="orgheadline7"><span class="section-number-3">2.3</span> Environment diagrams</h3>
+<div id="outline-container-sec-2-3" class="outline-3">
+<h3 id="sec-2-3"><span class="section-number-3">2.3</span> Environment diagrams</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 Environment diagrams visualize the interpreter's process
@@ -289,15 +319,18 @@ Environment diagrams visualize the interpreter's process
 <ul class="org-ul">
 <li>Execution rule for assignment statements:
 <ol class="org-ol">
-<li>Evaluate all expressions to the right of = from left to right</li>
-<li>Bind all names to the left of = to those resulting values in the current frame.</li>
-</ol></li>
+<li>Evaluate all expressions to the right of = from left to right
+</li>
+<li>Bind all names to the left of = to those resulting values in the current frame.
+</li>
+</ol>
+</li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgheadline8" class="outline-3">
-<h3 id="orgheadline8"><span class="section-number-3">2.4</span> Defining functions</h3>
+<div id="outline-container-sec-2-4" class="outline-3">
+<h3 id="sec-2-4"><span class="section-number-3">2.4</span> Defining functions</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
 Assignment is a simple means of abstraction: <b>binds names to values</b>
@@ -325,23 +358,29 @@ applied.
 <b>Execution procedure for def statements</b>:
 </p>
 <ol class="org-ol">
-<li>Create a function with signature &lt;name&gt;(&lt;formal parameters&gt;)</li>
-<li>Set the body of that function to be everything indented after the first line</li>
-<li>Bind &lt;name&gt; to that function in the <b>current frame</b></li>
+<li>Create a function with signature &lt;name&gt;(&lt;formal parameters&gt;)
+</li>
+<li>Set the body of that function to be everything indented after the first line
+</li>
+<li>Bind &lt;name&gt; to that function in the <b>current frame</b>
+</li>
 </ol>
 </div>
 </div>
 
-<div id="outline-container-orgheadline9" class="outline-3">
-<h3 id="orgheadline9"><span class="section-number-3">2.5</span> Calling user defined function</h3>
+<div id="outline-container-sec-2-5" class="outline-3">
+<h3 id="sec-2-5"><span class="section-number-3">2.5</span> Calling user defined function</h3>
 <div class="outline-text-3" id="text-2-5">
 <p>
 Procedure for calling/applying user-defined functions (version 1):
 </p>
 <ol class="org-ol">
-<li>Add a local frame, forming a new environment</li>
-<li>Bind the function's formal parameters to its arguments in that frame</li>
-<li>Execute the body of the function in that new environment</li>
+<li>Add a local frame, forming a new environment
+</li>
+<li>Bind the function's formal parameters to its arguments in that frame
+</li>
+<li>Execute the body of the function in that new environment
+</li>
 </ol>
 
 <p>
@@ -359,11 +398,355 @@ A function's signature has all the information needed to create a local frame
 </p>
 </div>
 </div>
+
+<div id="outline-container-sec-2-6" class="outline-3">
+<h3 id="sec-2-6"><span class="section-number-3">2.6</span> Looking up Names in Environments</h3>
+<div class="outline-text-3" id="text-2-6">
+<p>
+Every expression is evaluated in the context of an environment.
+</p>
+
+<p>
+So far, the current environment is either:
+</p>
+<ul class="org-ul">
+<li>The global frame alone or
+</li>
+<li>A local frame, followed by the global frame.
+</li>
+</ul>
+<p>
+from
+Two <b>important things</b>:
+</p>
+<ul class="org-ul">
+<li>An environment is a sequence of frames
+</li>
+<li>A name evaluates to the value bound to that name in the earliest frame of the current environment in which that name is found.
+</li>
+</ul>
+
+<p>
+Built-in names like "max" are in the global frame too.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-2-7" class="outline-3">
+<h3 id="sec-2-7"><span class="section-number-3">2.7</span> Print and None</h3>
+<div class="outline-text-3" id="text-2-7">
+<p>
+A special value called "None", it means "nothing".
+</p>
+
+<p>
+A function that does not explicitly return a value will return <b>None</b>.
+</p>
+
+<p>
+Careful: <b>None</b> is not displayed by the interpreter as the value of an expression.
+This means when typed "None" in REPL, noting showed up.
+</p>
+
+<ul class="org-ul">
+<li>Pure Functions: just return values
+</li>
+<li>Non-pure functions: have side effects
+</li>
+</ul>
+
+
+<div class="figure">
+<p><img src="./figures/lecture2_pure_nonpure_functions.png" alt="lecture2_pure_nonpure_functions.png" />
+</p>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> Lecture 3</h2>
+<div class="outline-text-2" id="text-3">
+</div><div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1"><span class="section-number-3">3.1</span> Multiple Environments</h3>
+<div class="outline-text-3" id="text-3-1">
+</div><div id="outline-container-sec-3-1-1" class="outline-4">
+<h4 id="sec-3-1-1"><span class="section-number-4">3.1.1</span> Life Cycle of a User-defined function</h4>
+<div class="outline-text-4" id="text-3-1-1">
+<p>
+Def statement:
+</p>
+<ul class="org-ul">
+<li>A new function is created
+</li>
+<li>Name bound to that function in the current frame
+</li>
+</ul>
+
+<p>
+Call expression:
+</p>
+<pre class="example">
+square(2+2)
+</pre>
+<p>
+square is a name, what is also called an operator, and it evaluates to a user-defined function.
+</p>
+
+<p>
+The operand is an expression, which is evaluated to number <code>4</code>
+</p>
+
+<ul class="org-ul">
+<li>When call, operator &amp; operands are evaluated
+</li>
+<li>Then Function (value of operator) called on arguments (values of operands)
+</li>
+</ul>
+
+<p>
+Calling/Applying:
+</p>
+<ul class="org-ul">
+<li>A new frame is created (a new place where you can bind names to values)
+</li>
+<li>Parameters bound to arguments
+</li>
+<li>Body is executed in that new environment
+</li>
+<li>A value is returned.
+</li>
+</ul>
+
+<p>
+<b>Assignment and Def statement all change the current frame</b>
+</p>
+
+<p>
+An environment is a sequence of frames. So far we have environments that are two frames long at a maximum.
+</p>
+<ul class="org-ul">
+<li>The global frame alone
+</li>
+<li>A local, then the global frame
+</li>
+</ul>
+
+<p>
+Every expression is evaluated in the context of an environment.
+</p>
+
+<p>
+A name evaluates to the value bound to that name in the earliest frame
+of the current environment in which the name is found.
+</p>
+
+
+<div class="figure">
+<p><img src="./figures/lecture3_multiple_environments.png" alt="lecture3_multiple_environments.png" />
+</p>
+</div>
+
+<p>
+A call expressions and the body of the function being called are
+evaluated in different environments.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-3-1-2" class="outline-4">
+<h4 id="sec-3-1-2"><span class="section-number-4">3.1.2</span> Local Names (1.3.4 of book)</h4>
+<div class="outline-text-4" id="text-3-1-2">
+<p>
+The <i>scope</i> of a local name is limited to the body of the user-defined
+function that defines it. When a name is no longer accessible, it is
+out of scope. This scoping behavior <b>isn't</b> a new fact about our
+model; it is a consequence of the way <b>environments</b> work.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-3-1-3" class="outline-4">
+<h4 id="sec-3-1-3"><span class="section-number-4">3.1.3</span> Local Assignment (1.5.3 of book)&#xa0;&#xa0;&#xa0;<span class="tag"><span class="important">important</span></span></h4>
+<div class="outline-text-4" id="text-3-1-3">
+<p>
+The effect of an assignment statement is to bind a name to a value in
+the <b>first</b> frame of the current environment. As a consequence,
+assignment statements within a function body cannot affect the global
+frame.
+</p>
+
+<p>
+The fact that functions can only manipulate their local environment is
+critial to creating <i>modular</i> programs.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3-2" class="outline-3">
+<h3 id="sec-3-2"><span class="section-number-3">3.2</span> Miscellaneous Python Features</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+<code>print</code> 函数可通过 <code>sep</code> 指定间隔字符，默认是 ' '，使用 '' 可去除
+间隔。
+</p>
+
+<p>
+Run in interative mode:
+</p>
+<pre class="example">
+python -i ex.py
+</pre>
+
+<p>
+Run doctest:
+</p>
+<pre class="example">
+python -m doctest ex.py
+</pre>
+
+<p>
+Run doctest with detailed information shown:
+</p>
+<pre class="example">
+python -m doctest -v ex.py
+</pre>
+
+<p>
+使用 <code>help(...)</code> 查看 docstring
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-3-3" class="outline-3">
+<h3 id="sec-3-3"><span class="section-number-3">3.3</span> Conditional statement</h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+A <i>statement</i> is executed by the interpreter to perform an action,
+which is a bit different than the <i>expression</i> which evaluates to a
+value. So statement <b>does something</b> and expression <b>evaluates</b> to a
+value.
+</p>
+
+<p>
+[From book 1.5] Control statements differ fundamentally from the
+expressions that we have studied so far. They deviate from the strict
+evaluation of subexpressions from left to right, and get their name
+from the fact that they control what the interpreter should do next,
+possibly based on the values of expressions.
+</p>
+
+<p>
+In Python, 0, <code>None</code> and <i>boolean</i> value <code>False</code> are false values, all
+other numbers are true values.
+</p>
+
+<p>
+Functions that perform tests and return boolean values typically begin with <code>is</code>, not followed by an underscore.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> Lecture 5</h2>
+<div class="outline-text-2" id="text-4">
+<div class="org-src-container">
+
+<pre class="src src-Python">def make_adder(n):
+    def adder(k):
+        return k + n
+    return adder
+
+add_three = make_adder(3)
+result = add_three(4)
+</pre>
+</div>
+<p>
+The parent of function <code>add_three</code> is <code>f1</code> (frame of <code>make_adder</code>), not <code>Global</code>.
+</p>
+
+<p>
+Data is part of the function.
+</p>
+
+<ul class="org-ul">
+<li>Every user-defined function has a parent frame (often global)
+</li>
+<li>The parent of a function is the frame in which it was defined
+</li>
+<li>Every local frame has a parent frame (often global)
+</li>
+<li>The parent of a frame is the parent of the function called.
+</li>
+</ul>
+
+
+<div class="figure">
+<p><img src="./figures/lecture5_draw_diagram.png" alt="lecture5_draw_diagram.png" />
+</p>
+</div>
+
+<p>
+lambda expression must be a <b>single</b> expression.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5"><span class="section-number-2">5</span> Homeworks</h2>
+<div class="outline-text-2" id="text-5">
+</div><div id="outline-container-sec-5-1" class="outline-3">
+<h3 id="sec-5-1"><span class="section-number-3">5.1</span> Using the ok program</h3>
+<div class="outline-text-3" id="text-5-1">
+<p>
+The ok program helps you test your code and track your progress. The first time you run the autograder, you will be asked to log in with your @berkeley.edu account using your web browser. Please do so. Each time you run ok, it will back up your work and progress on our servers. You can run all the doctests with the following command:
+</p>
+<pre class="example">
+python3 ok
+</pre>
+
+<p>
+To test a specific question, use the -q option with the name of the function:
+</p>
+<pre class="example">
+python3 ok -q &lt;function&gt;
+</pre>
+
+<p>
+By default, only tests that fail will appear. If you want to see how you did on all tests, you can use the -v option:
+</p>
+<pre class="example">
+python3 ok -v
+</pre>
+
+<p>
+If you do not want to send your progress to our server or you have any problems logging in, add the <b>&#x2013;local</b> flag to block all communication:
+</p>
+<pre class="example">
+python3 ok --local
+</pre>
+
+<p>
+When you are ready to submit, run ok with the &#x2013;submit option:
+</p>
+<pre class="example">
+python3 ok --submit
+</pre>
+
+<p>
+每次使用 <code>python3 ok --local</code> 对 homework 进行测试，使用 <code>-q</code> 来对具体
+的问题进行测试。
+</p>
+</div>
+</div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Pan Mengguan</p>
-<p class="date">Created: 2017-07-19 周三 17:26</p>
+<p class="date">Created: 2017-07-23 日 23:25</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.2.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
